@@ -12,14 +12,14 @@ L.Routing.Nexogen = L.Class.extend({
       if (response.ok) {
         const route = response.body;
         const iroute = {};
-        iroute.name = '';
+        iroute.name = `${route.tollCost.amount} ${route.tollCost.currency}`;
         iroute.summary = {
-          totalDistance: route.distance.distance,
-          totalTime: route.duration.duration
+          totalDistance: route.distance,
+          totalTime: route.duration
         };
         iroute.coordinates = [];
         const indices = [];
-        const legs = route.segments.segments;
+        const legs = route.segments;
         for (let i = 0; i < legs.length; i++) {
           const indicesSecondary = [];
           const steps = legs[i].polyline;
@@ -34,7 +34,7 @@ L.Routing.Nexogen = L.Class.extend({
         iroute.waypoints = iroute.actualWaypoints = waypoints;
         iroute.waypointIndices = [0, iroute.coordinates.length - 1];
         iroute.instructions = []
-        const maneuvers = route.maneuvers.maneuvers;
+        const maneuvers = route.maneuvers;
         for (let i = 0; i < maneuvers.length; i++) {
           const maneuver = maneuvers[i];
           iroute.instructions.push({
@@ -76,10 +76,10 @@ L.Routing.Nexogen = L.Class.extend({
       'vehicleProfile': options.vehicleProfile || 'Car',
       'provider': options.provider || 'ptv',
       'requiredResults': [
-        "Distance", "Duration", "Segments", "Maneuvers"
+        "Distance", "Duration", "Segments", "Maneuvers", "TollCost"
       ]
     };
-    const queryUrl = `${baseUrl}/gis/v1/routing/direct`;
+    const queryUrl = `${baseUrl}/gis/v2/routing/direct`;
     const postQuery = async (url, body, bearerToken) => {
       let results;
       let response = await fetch(url, {
