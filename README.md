@@ -24,7 +24,7 @@ where `{api_url_placeholder}` is your URL referring to your designated NEXOGEN G
 
 The plug-in can be used in the following way:
 
-```js=
+```javascript
 L.Routing.control({
 	addWaypoints: true,
 	waypoints: [
@@ -32,7 +32,7 @@ L.Routing.control({
 		L.latLng(46.2530102, 20.1414253)
 	],
 	router: L.Routing.nexogen({
-		baseUrl: '{api_url_placeholder}',
+		baseUrl: 'http://localhost:8010/proxy', // url to local-cors-proxy or backend API on the same domain to avoid CORS issues
 		bearerToken: '{api_token_placeholder}',
 		vehicleProfile: 'Truck_40t', // Car, etc.
 	}),
