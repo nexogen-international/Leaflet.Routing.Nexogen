@@ -1,4 +1,5 @@
-A Leaflet Routing Machine plugin for NEXOGEN GIS Routing API v2. The package contains:
+### A Leaflet Routing Machine plugin for NEXOGEN GIS Routing API v2.
+The package contains:
 
 Plug-in for integration with
 * NEXOGEN GIS Routing API v2
@@ -9,7 +10,7 @@ Plug-in was tested with the following dependencies:
 
 You must use NEXOGEN GIS Routing API either via a local CORS proxy or your dedicated backend API to avoid CORS issues.
 
-Usage:
+__Usage:__
 
 To test the plug-in locally, you need to use a local CORS proxy first.
 One suggestion is to install `local-cors-proxy` via `npm`.
@@ -23,7 +24,7 @@ where `{api_url_placeholder}` is your URL referring to your designated NEXOGEN G
 
 The plug-in can be used in the following way:
 
-```javascript=
+```js=
 L.Routing.control({
 	addWaypoints: true,
 	waypoints: [
